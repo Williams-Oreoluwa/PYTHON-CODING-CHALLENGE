@@ -157,28 +157,110 @@ print('The probability of wearing a red shirt for the week is ',  Probability_of
 
 # Save to postgresql
 
-import psycopg2
+# import psycopg2
 
-DB_HOST = "http://127.0.0.1:52274/browser/"
-DB_NAME = "PYTHON"
-DB_USER = "postgres"
-DB_PASS = "kingsman11"
+# DB_HOST = "http://127.0.0.1:52274/browser/"
+# DB_NAME = "PYTHON"
+# DB_USER = "postgres"
+# DB_PASS = ""
 
-conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
+# conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
 
-conn.close()
 
-# print(variance)
-# def fibonacci(n):
-#     if n <= 0:
-#         return 0
-#     elif n == 1:
-#         return 1
-#     else:
-#         return fibonacci(n-1) + fibonacci(n-2)
+# Generate 4 digit numbers containning 0s and 1s 
 
-# sum = 0
-# for i in range(1, 51):
-#     sum += fibonacci(i)
+from random import randint
+values = {
+    'first_value': randint(0,1),
 
-# print("The sum of the first 50 Fibonacci numbers is:", sum)
+    'second_value': randint(0,1),
+
+    'Third_value': randint(0,1),
+
+    'Fourth_value': randint(0,1)
+}
+print('The values of the four digits numbers between 0s and 1s are ' , values['first_value'], values['second_value'], values['Third_value'], values['Fourth_value'], sep='')
+
+#convert to base 10
+
+
+first = values['first_value'] * 10**(len(values)-1)
+
+second = values['second_value'] * 10**(len(values)-2)
+
+third = values['Third_value'] * 10**(len(values)-3)
+
+fourth = values['Fourth_value'] * 10**(len(values)-4)
+
+base_10 = first + second + third + fourth
+
+print(base_10 % 10)
+
+
+
+
+
+
+print('The total values in base 10')
+
+# Recursive Searching Algorithm
+
+def rec_al(data, first, last, value):
+
+    if first <= last:
+
+        center_number = (first + last) // 2
+
+        if data[center_number] == value:
+
+            return center_number
+
+
+        elif value < data[center_number]:
+
+            return rec_al(data, first, center_number - 1, value)
+
+        else:
+
+            return rec_al(data, center_number + 1, last, value)
+
+    else:
+
+        return -1
+
+
+my_list = [2,3,5,2,6,2]
+
+new_list = sorted(my_list)
+
+print(new_list)
+
+picked_number = 2
+
+print(rec_al(new_list, 2, 6, picked_number))
+
+
+# Fibonacci series 
+
+def fibonacci(n):
+
+    if n <= 0:
+
+        return 0
+        
+    elif n == 1:
+
+
+        return 1
+
+    else:
+
+        return fibonacci(n-1) + fibonacci(n-2)
+
+sum = 0
+
+for i in range(1, 51):
+    
+    sum += fibonacci(i)
+
+print("The sum of the first 50 Fibonacci numbers is:", sum)
